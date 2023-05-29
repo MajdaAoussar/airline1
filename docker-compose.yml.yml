@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+    db:
+        image: postgres:13
+        volumes:
+          - postgres_data:/var/lib/postgresql/data/
+        environment:
+          - "POSTGRES_HOST_AUTH_METHOD=trust"
+
+    web:
+        build: .
+        volumes:
+            - .:/usr/src/app
+        ports:
+            - "8000:8000"
+            
+volumes:
+  postgres_data:
